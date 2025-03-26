@@ -18,7 +18,7 @@ bin/
 !**/src/test/**/bin/
 
 ### 설정 제외 파일 ###
-applicaton.properties
+src/main/resources/application*.properties
 
 ### IntelliJ IDEA ###
 .idea
