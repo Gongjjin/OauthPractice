@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Complete Your Registration</h1>
+
+    <!-- 에러 메시지 -->
+    <div>
+        <span id="error-message" style="color: red;"></span>
+    </div>
+
+    <form action="/join" method="post">
+        <!-- 이메일: 읽기 전용 -->
+        <div>
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" readonly>
+        </div>
+
+        <!-- 이름 -->
+        <div>
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name">
+        </div>
+
+        <!-- 전화번호 -->
+        <div>
+            <label for="phone">전화번호</label>
+            <input type="text" id="phone" name="phone" required placeholder="Enter your phone">
+        </div>
+
+        <!-- 숨겨진 role 필드 -->
+        <input type="hidden" id="role" name="role">
+
+        <!-- 제출 버튼 -->
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // URL 파라미터에서 이메일, 이름, role 추출
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        const name = urlParams.get('name');
+        const role = urlParams.get('role');  // role 값을 가져옴
+
+        if (email && name && role) {
+            document.getElementById('email').value = email;
+            document.getElementById('name').value = name;
+            document.getElementById('role').value = role;  // role을 숨겨진 input에 설정
+        } else {
+            document.getElementById('error-message').innerText = '이메일, 이름, 또는 역할을 받아올 수 없습니다. 로그인 후 다시 시도해주세요.';
+        }
+    });
+</script>
+</body>
+</html>
