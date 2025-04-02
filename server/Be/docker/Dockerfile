@@ -9,4 +9,3 @@ EXPOSE 8080
 
 # 4. 컨테이너 실행 시 실행할 명령어
 ENTRYPOINT ["java", "-jar", "/app.jar"]
-f
