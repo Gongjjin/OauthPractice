@@ -37,9 +37,9 @@ jobs:
 
 
     # 프로젝트 저장소에 업로드하면 안되는 설정 파일들을 만들어줍니다.
+	# src/main/resources으로 이동, 프로퍼티 만들어야함
     - name: Make application.properties
       run: |
-      	# src/main/resources으로 이동, 프로퍼티 만들어야함
         cd ./src/main/resources
         # 필요한 yml 파일들을 만들어줍니다.
         touch ./application.properties
