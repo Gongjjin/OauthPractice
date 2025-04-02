@@ -1,0 +1,30 @@
+version: 0.0
+
+# codeDeploy를 통해 appspec과 deploy는 s3에 업로드되는 배포 아티팩트 안에 들어있어야함
+os: linux
+
+# 코드 파일 전송과 관련된 설정
+files:
+  # 코드 파일의 소스 경로
+  - source: /
+    # 코드 파일의 대상 경로 -> /home/ubuntu/app 디렉토리로 파일을 복사한다.
+    destination: /home/ubuntu/app
+    overwrite: yes
+
+# 파일 및 디렉토리 권한에 관련된 설정
+permissions:
+  - object: /
+    pattern: "**"
+    # 파일 및 디렉토리의 소유자를 ec2-user로 설정
+    owner: ubuntu
+    # 파일 및 디렉토리의 그룹을 ec2-user로 설정
+    group: ubuntu
+
+# Deploy 전후에 실행할 스크립트 또는 명령에 관련된 설정, Deploy.sh 파일이 scripts 폴더 안에 있기 때문에 설정을 변경
+hooks:
+  ApplicationStart:
+    # 애플리케이션 시작시 실행할 스크립트 또는 명령에 관련된 설정
+    - location: deploy.sh
+      # 스크립트 또는 명령 실행의 제한 시간을 설정
+      timeout: 120
+      runas: ubuntu
