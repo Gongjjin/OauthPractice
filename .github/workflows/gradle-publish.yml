@@ -82,14 +82,14 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-	# S3에 프로젝트를 업로드 합니다.
+# S3에 프로젝트를 업로드 합니다.
     - name: S3에 프로젝트 업로드
       run: |
         aws s3 cp \
         --region ap-northeast-2 \
         ./spring-build.zip s3://myawsbucket-cicd-hong
 
-    # CodeDelploy에 배포를 요청합니다.
+# CodeDelploy에 배포를 요청합니다.
     - name: Code Deploy 배포 요청
       run: aws deploy create-deployment \
         --application-name practice \
@@ -97,7 +97,7 @@ jobs:
         --deployment-group-name test-hong \
         --s3-location bucket=myawsbucket-cicd-hong,bundleType=zip,key=spring-build.zip
           
-      # 이 구문을 추가해야 빌드 성공 실패와 상관없이 동작합니다.
+# 이 구문을 추가해야 빌드 성공 실패와 상관없이 동작합니다.
       if: always()
 
 
