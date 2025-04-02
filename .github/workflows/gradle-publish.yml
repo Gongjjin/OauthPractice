@@ -3,7 +3,7 @@ name: Backend CI/CD
 on:
   push:
     paths:
-      - 'server/BE/**'
+      - 'server/Be/**'
     branches: ["main"]
 
 permissions:
@@ -33,14 +33,14 @@ jobs:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('server/BE/**/*.gradle*', 'server/BE/**/gradle-wrapper.properties') }}
+        key: ${{ runner.os }}-gradle-${{ hashFiles('server/Be/**/*.gradle*', 'server/Be/**/gradle-wrapper.properties') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
 
     # application.properties 생성
     - name: Make application.properties
       run: |
-        cd ./server/BE/src/main/resources
+        cd ./server/Be/src/main/resources
         touch application.properties
         touch application-prod.properties
         echo "$APPLICATION_DEFAULT" > application.properties
@@ -51,22 +51,22 @@ jobs:
       shell: bash
 
     - name: Gradle 권한 부여
-      run: chmod +x server/BE/gradlew
+      run: chmod +x server/Be/gradlew
 
     - name: Gradle로 빌드 실행
-      working-directory: server/BE
+      working-directory: server/Be
       run: ./gradlew bootjar
 
     # zip 파일 생성
     - name: zip file 생성
       run: |
         mkdir -p deploy/scripts
-        cp ./server/BE/docker/docker-compose.blue.yml ./deploy/
-        cp ./server/BE/docker/docker-compose.green.yml ./deploy/
-        cp ./server/BE/appspec.yml ./deploy/
-        cp ./server/BE/docker/Dockerfile ./deploy/
-        cp ./server/BE/scripts/*.sh ./deploy/scripts/
-        cp ./server/BE/build/libs/*.jar ./deploy/
+        cp ./server/Be/docker/docker-compose.blue.yml ./deploy/
+        cp ./server/Be/docker/docker-compose.green.yml ./deploy/
+        cp ./server/Be/appspec.yml ./deploy/
+        cp ./server/Be/docker/Dockerfile ./deploy/
+        cp ./server/Be/scripts/*.sh ./deploy/scripts/
+        cp ./server/Be/build/libs/*.jar ./deploy/
         cd deploy
         zip -r ../spring-build.zip .
         cd ..
@@ -98,7 +98,7 @@ jobs:
 
     # (옵션) GitHub Packages 퍼블리시
     - name: Publish to GitHub Packages
-      working-directory: server/BE
+      working-directory: server/Be
       run: ./gradlew publish
       env:
         USERNAME: ${{ github.actor }}
