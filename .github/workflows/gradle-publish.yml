@@ -37,7 +37,7 @@ jobs:
 
 
     # 프로젝트 저장소에 업로드하면 안되는 설정 파일들을 만들어줍니다.
-	# src/main/resources으로 이동, 프로퍼티 만들어야함
+# src/main/resources으로 이동, 프로퍼티 만들어야함
     - name: Make application.properties
       run: |
         cd ./src/main/resources
@@ -61,7 +61,7 @@ jobs:
       run: ./gradlew bootjar
 
 
-      # 배포에 필요한 여러 설정 파일과 프로젝트 빌드파일을 zip 파일로 모아줍니다.
+# 배포에 필요한 여러 설정 파일과 프로젝트 빌드파일을 zip 파일로 모아줍니다.
     - name: zip file 생성
       run: |
         mkdir deploy
@@ -73,7 +73,7 @@ jobs:
         cp ./build/libs/*.jar ./deploy/
         zip -r -qq -j ./spring-build.zip ./deploy
 
-	# AWS에 연결해줍니다.
+# AWS에 연결해줍니다.
     - name: AWS 연결
       uses: aws-actions/configure-aws-credentials@v1
       #IAM 설정임
