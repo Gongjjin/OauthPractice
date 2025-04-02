@@ -24,7 +24,7 @@ permissions:
 hooks:
   ApplicationStart:
     # 애플리케이션 시작시 실행할 스크립트 또는 명령에 관련된 설정
-    - location: deploy.sh
+    - location: scripts/deploy.sh
       # 스크립트 또는 명령 실행의 제한 시간을 설정
       timeout: 120
       runas: ubuntu
