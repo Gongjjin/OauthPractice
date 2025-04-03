@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 ARG JAR_FILE=build/libs/*.jar
 
 # 2. JAR 복사 (이미지에 포함될 파일)
-COPY ${JAR_FILE} spring.jar
+COPY ${JAR_FILE} app.jar
 
 # 4. 컨테이너 실행 시 실행할 명령어
 ENTRYPOINT ["java", "-jar", "/app.jar"]
