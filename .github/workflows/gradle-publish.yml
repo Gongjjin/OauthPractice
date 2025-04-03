@@ -97,6 +97,3 @@ jobs:
         --deployment-config-name CodeDeployDefault.OneAtATime \
         --deployment-group-name test-hong \
         --s3-location bucket=myawsbucket-cicd-hong,bundleType=zip,key=spring-build.zip
-
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
