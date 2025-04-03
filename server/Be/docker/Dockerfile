@@ -2,7 +2,8 @@
 FROM openjdk:17-jdk-slim
 
 # 2. JAR 복사 (이미지에 포함될 파일)
-COPY build/libs/*.jar app.jar
+COPY *.jar app.jar
+# COPY build/libs/*.jar app.jar
 
 # 3. 포트 열기 (선택)
 EXPOSE 8080
