@@ -98,10 +98,5 @@ jobs:
         --deployment-group-name test-hong \
         --s3-location bucket=myawsbucket-cicd-hong,bundleType=zip,key=spring-build.zip
 
-    # (옵션) GitHub Packages 퍼블리시
-    - name: Publish to GitHub Packages
-      working-directory: server/Be
-      run: ./gradlew publish
-      env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
