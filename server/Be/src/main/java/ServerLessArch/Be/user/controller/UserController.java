@@ -63,6 +63,7 @@ public class UserController {
      */
     @GetMapping("/test")
     public String testToParse(){
+        log.info("api 접근 성공");
         return "hello1";
     }
 }
