@@ -34,10 +34,10 @@ public class OAuth2JwtAuthFilter extends OncePerRequestFilter {
      *     명시되지 않은 url의 경우 로그인 화면으로 리디렉션됨
      *     아래 doFilter 설정 때문에 token url은 bearer를 붙이지 않아도 됨, 근데 이 설정이 쓸모 있는지는 모르겠음
       */
-//    @Override
-//    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-//        return request.getRequestURI().contains("token");
-//    }
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        return request.getRequestURI().contains("token");
+    }
 
 
     @Override
