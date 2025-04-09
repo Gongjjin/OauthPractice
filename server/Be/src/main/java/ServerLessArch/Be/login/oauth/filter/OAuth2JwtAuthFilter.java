@@ -33,16 +33,17 @@ public class OAuth2JwtAuthFilter extends OncePerRequestFilter {
      *     token을 포함하는 api 요청은 재발급 이슈가 있기 때문에 필터를 적용시키지 않음
      *     명시되지 않은 url의 경우 로그인 화면으로 리디렉션됨
      *     아래 doFilter 설정 때문에 token url은 bearer를 붙이지 않아도 됨, 근데 이 설정이 쓸모 있는지는 모르겠음
+     *     2025.04.10 /test와 같이 인증 절차가 필요 없는 절차에도 인증 토큰이 있어야하는 상황이 발생, 따라서 test도 아래 dofilterInternal를 스킵하게 설정
+     *     이와 같이 예외적으로 처리가 필요한 경로는 || 로 추가하면 될 듯
       */
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getRequestURI().contains("token");
+        return request.getRequestURI().contains("token") || request.getRequestURI().contains("test");
     }
 
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        log.info("여기가 문제");
         // request Header에서 AccessToken을 가져온다.
         String atc = request.getHeader("Authorization");
 
