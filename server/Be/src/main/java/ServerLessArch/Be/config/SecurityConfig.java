@@ -46,7 +46,7 @@
                             .requestMatchers("/oauth/**","/images/**", "/js/**", "/favicon.ico", "/h2-console/**", "/success").permitAll() // 공용 URL
                             .requestMatchers("/websocket/**").permitAll()
                             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()  // OPTIONS 요청은 모두 허용
-                            .requestMatchers("/test").authenticated() // test
+                            .requestMatchers("/test").permitAll() // test
                             .requestMatchers("/getemail").authenticated()
                             .anyRequest().permitAll()
                     );
